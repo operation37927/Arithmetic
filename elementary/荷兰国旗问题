@@ -1,0 +1,53 @@
+package isoft.sort.nuke_arithmetic;
+
+public class PartitionSort {
+
+	//让一个数组中比num小的在排在左边，跟num相等的在中间，比num大的在右边；
+	public static void partition (int[] arr,int L,int R,int num){
+		int less = L-1;
+		int more = R+1;
+		int cur = L;
+		while(cur < more){
+			if(arr[cur] < num){
+				swap(arr , ++less, cur++);
+			}else if(arr[cur] > num){
+				swap(arr , --more , cur);
+			}else{
+				cur++;
+			}
+		}
+		
+	}
+
+	private static void swap(int[] arr, int i, int j) {
+		// TODO Auto-generated method stub
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] array = new int[10];
+
+		for (int i = 0; i < 10; i++) {
+			array[i] = (int) (Math.random() * 100);
+		}
+
+		System.out.println("排序前：");
+
+		for (int element : array) {
+			System.out.print(element + " ");
+		}
+		System.out.println("");
+		System.out.println("排序后：");
+
+		partition(array,0,array.length-1,50);
+
+		for (int element : array) {
+			System.out.print(element + " ");
+		}
+	}
+
+}
