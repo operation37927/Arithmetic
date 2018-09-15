@@ -1,0 +1,49 @@
+package isoft.sort.nuke_arithmetic;
+
+public class OptionSort {
+
+	public static void option(int[] arr){
+		if(arr==null||arr.length<2){
+			return;
+		}
+		for(int i = 0;i<arr.length;i++){
+			int index = i;
+			for(int j =i+1;j<arr.length;j++){
+				index = arr[j]>arr[index] ? index:j;
+			}
+			swap(arr,i,index);
+				
+		}
+	}
+
+	private static void swap(int[] arr, int i, int index) {
+		int temp = arr[i];
+		arr[i] = arr[index];
+		arr[index] = temp;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] array = new int[10];
+
+		for (int i = 0; i < 10; i++) {
+			array[i] = (int) (Math.random() * 100);
+		}
+
+		System.out.println("排序前：");
+
+		for (int element : array) {
+			System.out.print(element + " ");
+		}
+		System.out.println("");
+		System.out.println("排序后：");
+
+		option(array);
+
+		for (int element : array) {
+			System.out.print(element + " ");
+		}
+	}
+
+}
