@@ -1,0 +1,75 @@
+package isoft.sort.nuke_arithmetic;
+
+public class HeapSort {
+
+	public static void heapSort(int[] arr){
+		if(arr == null||arr.length<2){
+			return;
+		}
+		for(int i = 0 ; i<arr.length;i++){
+			heapInsert(arr,i);
+		}
+		int heapSize = arr.length;
+		swap(arr,0,--heapSize);
+		while(heapSize > 0){
+			
+			heapity(arr,0,heapSize);
+			swap(arr,0,--heapSize);
+		}
+		
+	}
+
+	public static void heapity(int[] arr, int index, int size) {
+		int left = index*2 + 1;
+		while(left < size){
+			int better = left + 1 < size && arr[left] < arr[left + 1] ? left : left + 1;
+			better = arr[better] < arr[index] ? better : index;
+			if(better == index){
+				break;
+			}
+			swap(arr,index,better);
+			index = better;
+			left = 2*index +1;
+			
+		}
+		
+	}
+
+	private static void heapInsert(int[] arr, int index) {
+		while(arr[index] < arr[(index- 1)/2] ){
+			swap(arr,index,(index-1)/2);
+			index = (index-1)/2;
+		}
+	}
+
+	private static void swap(int[] arr, int i, int j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int[] array = new int[10];
+
+		for (int i = 0; i < 10; i++) {
+			array[i] = (int) (Math.random() * 100);
+		}
+
+		System.out.println("排序前：");
+
+		for (int element : array) {
+			System.out.print(element + " ");
+		}
+		System.out.println("");
+		System.out.println("排序后：");
+
+		heapSort(array);
+
+		for (int element : array) {
+			System.out.print(element + " ");
+		}
+	}
+
+}
