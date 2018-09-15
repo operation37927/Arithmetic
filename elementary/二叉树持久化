@@ -1,9 +1,9 @@
 
-/**
- * 二叉树持久化
- */
-public class BinaryTree {
 
+public class BinaryTree {
+    /**
+     * 二叉树持久化
+     */
     public String serialByPre(Node head){
         if(head == null){
              return "#!";
@@ -12,5 +12,30 @@ public class BinaryTree {
         str += serialByPre(head.left);
         str += serialByPre(head.right);
         return str;
+    }
+    
+    /**
+     * 二叉树反序列化
+     * @param str
+     * @return
+     */
+    public static Node reconByPreString(String str){
+        String[] strings = str.split("!");
+        Queue<String> queue = new LinkedList<>();
+        for(int i = 0;i<strings.length;i++){
+            queue.offer(strings[i]);
+        }
+        return reconPreOrder(queue);
+
+    }
+    private static Node reconPreOrder(Queue<String> queue) {
+        String poll = queue.poll();
+        if(poll.equals("#")){
+            return null;
+        }
+        Node head = new Node(Integer.valueOf(poll));
+        head.left = reconPreOrder(queue);
+        head.right = reconPreOrder(queue);
+        return head;
     }
 }
