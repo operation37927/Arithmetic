@@ -1,0 +1,16 @@
+
+/**
+ * 二叉树持久化
+ */
+public class BinaryTree {
+
+    public String serialByPre(Node head){
+        if(head == null){
+             return "#!";
+        }
+        String str = head.value + "!";
+        str += serialByPre(head.left);
+        str += serialByPre(head.right);
+        return str;
+    }
+}
