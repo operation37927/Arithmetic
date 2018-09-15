@@ -1,0 +1,63 @@
+package isoft.sort.nuke_arithmetic;
+
+public class QuickSort {
+
+	public static void quickSort(int[] arr){
+		if(arr == null || arr.length<2){
+			return ;
+		}
+		quickSort(arr,0,arr.length-1);
+	}
+	public static void quickSort(int[] arr,int L ,int R){
+		if(L<R){
+			int[] p = partition(arr,L,R);
+			quickSort(arr,L,p[0]-1);
+			quickSort(arr,p[1]+1,R);
+		}
+		
+	}
+
+	private static int[] partition(int[] arr, int l, int r) {
+		int less = l-1;
+		int more = r;
+		while(l<more){
+			if(arr[l] < arr[r]){
+				swap(arr,++less,l++);
+			}else if(arr[l] > arr[r]){
+				swap(arr,--more,l);
+			}else{
+				l++;
+			}
+		}
+		swap(arr,more ,r);
+		return new int[] {less+1,more};
+	}
+	private static void swap(int[] arr, int i, int j) {
+		int temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+		
+	}
+	public static void main(String[] args) {
+		int[] array = new int[10];
+
+		for (int i = 0; i < 10; i++) {
+			array[i] = (int) (Math.random() * 100);
+		}
+
+		System.out.println("排序前：");
+
+		for (int element : array) {
+			System.out.print(element + " ");
+		}
+		System.out.println("");
+		System.out.println("排序后：");
+
+		quickSort(array);
+
+		for (int element : array) {
+			System.out.print(element + " ");
+		}
+	}
+
+}
