@@ -31,6 +31,7 @@ public class erchashu {
 	}
 	
 	//--------------------二叉树非递归------------------------------
+	//先序
 	public static void preOrderUnRecursion(Node head){
 		if(head != null){
 			Stack<Node> stack = new Stack<Node>();
@@ -47,7 +48,7 @@ public class erchashu {
 			}
 		}
 	}
-	
+	//中序
 	public static void inOrderUnRecur(Node head){
 		if(head != null){
 			Stack<Node> stack = new Stack<Node>();
@@ -64,7 +65,7 @@ public class erchashu {
 			}
 		}
 	}
-	
+	//后序
 	public static void posOrderUnRecur(Node head){
 		if(head != null){
 			Stack<Node> stack1 = new Stack<Node>();
