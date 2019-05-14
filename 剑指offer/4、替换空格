@@ -1,0 +1,32 @@
+//用C++实现，从前往后遍历则移动次数太多，时间复杂度是O(n2),从后往前移动移动少，复杂度O(n)
+
+class Solution {
+public:
+	void replaceSpace(char *str,int length) {
+       
+        int lastNum = 0;
+        int totalNum = 0;
+        int numOfBlank = 0;
+        int i = 0;
+        while(str[i] != '\0'){
+            ++lastNum ;
+            if(str[i] == ' '){
+            ++numOfBlank;    
+            }
+           ++i;
+        }
+        totalNum = lastNum + numOfBlank * 2;
+        
+        while(lastNum>=0&&totalNum>lastNum){
+            if(str[lastNum] == ' '){
+                str[totalNum--] = '0';
+                str[totalNum--] = '2';
+                str[totalNum--] = '%';
+            }else{
+                str[totalNum--] = str[lastNum];
+            }
+            --lastNum;
+        }
+        
+	}
+};
