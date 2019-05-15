@@ -25,7 +25,7 @@ public:
             }else{
                 str[totalNum--] = str[lastNum];
             }
-            --lastNum;
+            --lastNum;//不管是否命中空格都要移动
         }
         
 	}
