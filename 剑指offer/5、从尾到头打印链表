@@ -1,0 +1,18 @@
+//从尾到头打印链表 属于后出先进的原则，可以先从头到尾遍历一遍链表，把遍历的链表放入栈中，然后在从栈中输出。
+
+//第二个思路是 用递归来实实现栈，递归的本质就是栈，但是要注意链表不能太长，否则会栈溢出
+
+
+import java.util.ArrayList;
+public class Solution {
+    ArrayList list = new ArrayList();
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+        if(listNode != null){
+            if(listNode.next != null){
+                printListFromTailToHead(listNode.next);
+            }
+            list.add(listNode.val);
+        }
+        return list;
+    }
+}
