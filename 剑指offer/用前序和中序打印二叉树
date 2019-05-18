@@ -1,0 +1,30 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
+        return reConstructCore(pre,0,pre.length-1,in,0,in.length);
+    }
+    public TreeNode reConstructCore(int[] pre ,int startPre,int endPre,int[] in , int startIn,int endIn){
+        if(startPre>endPre || startIn > endIn){
+            return null;
+        }
+        TreeNode node = new TreeNode(pre[startPre]);
+        for(int i = startIn ; i <= endIn;i++ ){
+            if(pre[startPre] == in[i]){
+                //i-startIn 算出中序根之前的左子树的个数
+                node.left=reConstructCore(pre,startPre+1,startPre+i-startIn,in,startIn,i-1);
+                //startPre +(i-startIn)+1 越过根节点和左子树，就是右子树的开始
+                node.right=reConstructCore(pre,startPre+i-startIn+1,endPre,in,i+1,endIn);
+                          break;
+            }
+        }
+        return node;
+    }
+}
