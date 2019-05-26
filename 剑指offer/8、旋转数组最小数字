@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+public class Solution {
+    public int minNumberInRotateArray(int [] array) {
+        if(array.length == 0 ){
+            return 0;
+        }
+        int start = 0;
+        int end = array.length-1;
+        int mid = start;
+        while(array[start]>=array[end]){
+            if(end - start == 1){
+                mid = end;
+                break;
+            }
+            mid = (end + start)/2;
+            //如果三个值相同则顺序打印
+            if(array[start]==array[mid]&&array[end]==array[mid]){
+                return minInOrder(array,start,end);
+            }
+            if(array[mid] >= array[start]){
+                start = mid;
+            }else if(array[mid] <= array[end]){
+                end = mid;
+            }
+        }
+        return array[mid];
+    }
+    int minInOrder(int[] array,int start,int end){
+       int result = array[start];
+        for(int i = start +1;i<end;i++){
+            if(result>array[i]){
+                result = array[i];
+            }
+        }
+        return result;
+    }
+}
